@@ -6,9 +6,9 @@
 int main(){
 	int pid_arr[1000],count=0;
 	DIR *dir;
-	dir=opendir("proc");
+	dir=opendir("/proc");
 	if(dir==NULL)
-		prinf("The system failed");
+		perror("/proc")
 	else{
 		struct dirent *entry;
 		while((entry=readdir(dir))!=NULL){
@@ -19,12 +19,12 @@ int main(){
 				}
 			}
 		}
-		printf("The PIDs are %d",count);
-		printf("The PIDs are the following:");	
+		printf("The processes currently running are:%d",count);
+		printf("The PIDs are the following:\n");	
 		for(int i=0;i<count;i++)
-			printf("%d\n",pid_arr[i]);
+			printf("%d	",pid_arr[i]);
 		}
-	closedir(dir)
+	closedir(dir);
 	return 0;
 
 }
